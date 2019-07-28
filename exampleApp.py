@@ -12,25 +12,27 @@ from kivy.graphics import Color
 from kivy.graphics import Line
 from kivy.lang import Builder
 from kivy.uix.screenmanager import ScreenManager, Screen
+from kivy.uix.popup import Popup
 
-class MainWindow(Screen):
+class Widgets(Widget):
+    def btn(self):
+        show_popup()
+
+class P(FloatLayout):
     pass
-
-class SecondWindow(Screen):
-    pass
-
-class WindowManager(ScreenManager):
-    pass
-
-
-kv = Builder.load_file("my.kv")
-
 
 #Building Class
-class MyMainApp(App):
+class MyApp(App):
     def build(self):
-        return kv
+        return Widgets()
+
+def show_popup():
+    show = P()
+
+    popupWindow = Popup(title="Popup Window", content=show, size_hint=(None, None),size=(400,400))
+
+    popupWindow.open()
 
 #Runs MyApp Method
 if __name__ == "__main__":
-    MyMainApp().run()
+    MyApp().run()
